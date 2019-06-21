@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nw.js</title>
+  </head>
+  <body>
+    <p>
+        <a href="chrome://flags">chrome://flags</a>
+        <a href="chrome://version">chrome://version</a>
+    </p>
+    <h1>Properties</h1>
+    <table id="properties">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>process.mainModule</td>
+                <td><pre><script>document.write(JSON.stringify(process.mainModule, null, 2))</script></pre></td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>Component Versions</h1>
+    <table id="versions">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        var versionsEl = document.getElementById("versions");
+        var versionsTbodyEl = versionsEl.getElementsByTagName("tbody")[0];
+        for (const [name, version] of Object.entries(process.versions).sort((a, b) => a[0].localeCompare(b[0]))) {
+            const nameEl = document.createTextNode(name);
+            const nameTdEl = document.createElement("td");
+            nameTdEl.appendChild(nameEl);
+            const versionEl = document.createTextNode(version);
+            const versionTdEl = document.createElement("td");
+            versionTdEl.appendChild(versionEl);
+            const trEl = document.createElement("tr");
+            trEl.appendChild(nameTdEl);
+            trEl.appendChild(versionTdEl);
+            versionsTbodyEl.appendChild(trEl);
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "name": "nwjs-demo",
+    "version": "0.0.1",
+    "main": "main.html",
+    "node-main": "main.js",
+    "chromium-args": "--disable-device-discovery-notifications"
+}
